@@ -10,12 +10,7 @@
         android:label="@string/label_home"
         tools:layout="@layout/fragment_home"
         >
-        <action
-            android:id="@+id/action_nav_home_to_nav_movie"
-            app:destination="@id/action_nav_home_to_nav_movie"
-            app:popUpTo="@id/nav_home"
-            app:popUpToSaveState="true"
-            app:restoreState="true" />
+
     </fragment>
 
 </navigation>
