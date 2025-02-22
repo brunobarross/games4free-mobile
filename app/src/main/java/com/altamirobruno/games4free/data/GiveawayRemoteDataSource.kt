@@ -5,11 +5,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class GiveawayRemoteDataSource {
-  suspend fun getGiveaways(type: String? = null): Result<List<Giveaway>> {
+  suspend fun getGiveaways(type: String? = null, platform: String? = null): Result<List<Giveaway>> {
     return withContext(Dispatchers.IO) {
       try {
         val response =
-          HTTPClient.retrofit().create(GamePowerApi::class.java).getGiveaways(type)
+          HTTPClient.retrofit().create(GamePowerApi::class.java).getGiveaways(type, platform)
         if (response.isSuccessful) {
           val giveaways = response.body() ?: emptyList<Giveaway>()
           Result.success(giveaways)

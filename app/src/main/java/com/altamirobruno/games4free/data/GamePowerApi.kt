@@ -10,6 +10,7 @@ import retrofit2.http.Url
 interface GamePowerApi {
   @GET("api/giveaways/")
   suspend fun getGiveaways(
-    @Query("type") type: String? = null
+    @Query("type") type: String? = null,
+    @Query("platform") platform: String? = null,
   ): Response<List<Giveaway>>
 }

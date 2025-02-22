@@ -15,18 +15,17 @@ class HomePresenter(
 ) {
     val categories = mutableListOf<Category>()
     fun loadingGiveAways() {
-
+        view.showProgress()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                view.showProgress()
-                val games = dataSource.getGiveaways("game").getOrNull()
+                val games = dataSource.getGiveaways("game", ).getOrNull()
                 val loots = dataSource.getGiveaways("loot").getOrNull()
                 withContext(Dispatchers.Main) {
                     if (!games.isNullOrEmpty()) {
                         categories.add(
                             Category(
                                 id = 1,
-                                name = "Jogos",
+                                name = "Games",
                                 giveaways = games
                             )
                         )
@@ -35,20 +34,21 @@ class HomePresenter(
                         categories.add(
                             Category(
                                 id = 2,
-                                name = "DLC's e Brindes",
+                                name = "DLC's",
                                 giveaways = loots
                             )
                         )
                     }
+                    view.showGiveaways(categories)
                 }
-                view.showGiveaways(categories)
+
 
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     e.message?.let { Log.d("error", it) }
                 }
             } finally {
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     view.hideProgress()
                 }
 

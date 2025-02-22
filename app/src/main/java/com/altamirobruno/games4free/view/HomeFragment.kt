@@ -40,21 +40,21 @@ class HomeFragment : Fragment() {
         val rv_category: RecyclerView = binding.rvCategory
         progressBar = view.findViewById(com.altamirobruno.games4free.R.id.progress_item)
         rv_category.layoutManager = LinearLayoutManager(requireContext())
-        val noHaveGiveaways = presenter.categories.all { category -> category.giveaways.isEmpty() }
+        rv_category.adapter = adapter
+        adapter.notifyDataSetChanged()
         if (adapter.itemCount === 0) {
             presenter.loadingGiveAways()
         }
-        rv_category.adapter = adapter
-        adapter.notifyDataSetChanged()
+
+
 
 
     }
 
     fun showGiveaways(categories: MutableList<Category>) {
-        adapter.addAll(categories)
+        val categoryItems = categories.map { CategoryItem(it) }
+        adapter.addAll(categoryItems)
         adapter.notifyDataSetChanged()
-
-
     }
 
     fun showErrorToast(error: String) {
