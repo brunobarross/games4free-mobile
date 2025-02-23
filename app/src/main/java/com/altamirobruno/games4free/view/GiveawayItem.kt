@@ -36,13 +36,22 @@ class GiveawayItem(val giveaway: Giveaway) : Item<GiveawayItem.GiveawayViewHolde
         viewHolder.itemView.findViewById<TextView>(R.id.giveaway_description).text =
             giveaway.description
         viewHolder.itemView.findViewById<TextView>(R.id.giveaway_type).setText("${giveaway.type} |")
-        giveawayPlatform.setText(giveaway.platforms.split(',')[0].toString())
-        giveawayStore.setText(giveaway.platforms.split(',')[1].toString())
+        val listPlatforms = giveaway.platforms.split(',')
+
+        if (listPlatforms.isNotEmpty()) {
+            giveawayPlatform.setText(listPlatforms[0].toString())
+            if (listPlatforms.size > 1) giveawayStore.setText(listPlatforms[1].toString())
+
+        }
+
+
+
 
         Glide
             .with(viewHolder.itemView)
             .load(giveaway.thumbnail)
             .centerCrop()
+            .fallback(R.drawable.movie_cover_placeholder)
             .placeholder(R.drawable.movie_cover_placeholder)
             .into(giveawayCover);
 
