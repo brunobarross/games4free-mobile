@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.altamirobruno.games4free"
-        minSdk = 24
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -33,7 +33,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 }
@@ -55,11 +55,12 @@ dependencies {
     api("androidx.navigation:navigation-ui-ktx:$nav_version")
     api("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.2.1")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.2.1")
     implementation("com.github.bumptech.glide:glide:4.16.0")
-  implementation("com.github.lisawray.groupie:groupie:$groupie_version")
-  implementation("com.github.lisawray.groupie:groupie-databinding:$groupie_version")
+    implementation("androidx.core:core-splashscreen:1.0.0-alpha01")
+    implementation("com.github.lisawray.groupie:groupie:$groupie_version")
+    implementation("com.github.lisawray.groupie:groupie-databinding:$groupie_version")
 
 
 }

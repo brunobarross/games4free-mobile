@@ -2,6 +2,7 @@ package com.altamirobruno.games4free.view
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -29,16 +30,22 @@ class GiveawayItem(val giveaway: Giveaway) : Item<GiveawayItem.GiveawayViewHolde
     override fun bind(viewHolder: GiveawayViewHolder, position: Int) {
         val giveawayCover = viewHolder.itemView.findViewById<ImageView>(R.id.giveaway_cover)
         val buttonGet = viewHolder.itemView.findViewById<Button>(R.id.btn_get)
+        val giveawayPlatform = viewHolder.itemView.findViewById<TextView>(R.id.giveaway_platform)
+        val giveawayStore = viewHolder.itemView.findViewById<TextView>(R.id.giveaway_store)
         viewHolder.itemView.findViewById<TextView>(R.id.giveaway_title).text = giveaway.title
         viewHolder.itemView.findViewById<TextView>(R.id.giveaway_description).text =
             giveaway.description
         viewHolder.itemView.findViewById<TextView>(R.id.giveaway_type).setText("${giveaway.type} |")
+        giveawayPlatform.setText(giveaway.platforms.split(',')[0].toString())
+        giveawayStore.setText(giveaway.platforms.split(',')[1].toString())
+
         Glide
             .with(viewHolder.itemView)
             .load(giveaway.thumbnail)
             .centerCrop()
             .placeholder(R.drawable.movie_cover_placeholder)
             .into(giveawayCover);
+
 
 
         buttonGet.setOnClickListener {
