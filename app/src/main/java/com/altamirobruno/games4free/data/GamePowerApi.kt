@@ -13,4 +13,9 @@ interface GamePowerApi {
     @Query("type") type: String? = null,
     @Query("platform") platform: String? = null,
   ): Response<List<Giveaway>>
+
+  suspend fun getGiveaway(
+    @Query("id") type: Int? = null,
+
+    ): Response<Giveaway>
 }

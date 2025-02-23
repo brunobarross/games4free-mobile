@@ -24,4 +24,24 @@ class GiveawayRemoteDataSource {
     }
 
   }
+
+  suspend fun getGiveaway(id: Int): Result<Giveaway> {
+    return withContext(Dispatchers.IO) {
+      try {
+        val response =
+          HTTPClient.retrofit().create(GamePowerApi::class.java).getGiveaway(id)
+        if (response.isSuccessful) {
+          val giveaways = response.body() ?: null
+          Result.success(giveaways)
+        } else {
+          val error = response.errorBody()?.string() ?: "Erro desconhecido"
+          Result.failure(Exception(error))
+        }
+      } catch (e: Exception) {
+        Result.failure(e)
+      } as Result<Giveaway>
+
+    }
+
+  }
 }
