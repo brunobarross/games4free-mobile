@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation_mobile"
-    app:startDestination="@id/nav_home">
-    <fragment
-        android:id="@+id/nav_home"
-        android:name="com.altamirobruno.games4free.view.HomeFragment"
-        android:label="@string/label_home"
-        tools:layout="@layout/fragment_home"
-        >
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/navigation_mobile"
+  app:startDestination="@id/nav_home">
+  <fragment
+    android:id="@+id/nav_home"
+    android:name="com.altamirobruno.games4free.view.HomeFragment"
+    android:label="@string/label_home"
+    tools:layout="@layout/fragment_home">
 
-    </fragment>
+    <action
+      android:id="@+id/action_nav_home_to_nav_giveaway"
+      app:destination="@id/nav_giveaway" />
+  </fragment>
+  <fragment
+    android:id="@+id/nav_giveaway"
+    android:name="com.altamirobruno.games4free.view.GiveawayFragment"
+    tools:layout="@layout/fragment_giveaway"
+
+    />
 
 </navigation>

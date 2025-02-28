@@ -9,9 +9,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.altamirobruno.games4free.R
 import com.altamirobruno.games4free.databinding.FragmentGiveawayBinding
 import com.altamirobruno.games4free.model.Category
+import com.altamirobruno.games4free.model.Giveaway
 import com.altamirobruno.games4free.presentation.GiveawayPresenter
+import com.bumptech.glide.Glide
 import com.xwray.groupie.GroupieAdapter
 
 class GiveawayFragment : Fragment() {
@@ -37,20 +40,29 @@ class GiveawayFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    val rv_category: RecyclerView = binding.rvCategory
     progressBar = view.findViewById(com.altamirobruno.games4free.R.id.progress_item)
-    rv_category.layoutManager = LinearLayoutManager(requireContext())
-    rv_category.adapter = adapter
-    adapter.notifyDataSetChanged()
-    if (adapter.itemCount === 0) {
-      presenter.loadingGiveAway()
-    }
+    val id: Int = arguments?.getInt("id") ?: 0
+    presenter.loadingGiveAway(id)
 
 
   }
 
-  fun showGiveaway(categories: MutableList<Category>) {
-    adapter.notifyDataSetChanged()
+  fun showGiveaway(giveaway: Giveaway) {
+    val giveawayTitle = binding.giveawayTitle
+    val giveawayCover = binding.giveawayImage
+    val giveawayDescription = binding.giveawayDescription
+
+    giveawayTitle.text = giveaway.title
+    giveawayDescription.text = giveaway.description
+    Glide
+      .with(giveawayCover)
+      .load(giveaway.image)
+      .centerCrop()
+      .fallback(R.drawable.movie_cover_placeholder)
+      .placeholder(R.drawable.movie_cover_placeholder)
+      .into(giveawayCover);
+
+
   }
 
   fun showErrorToast(error: String) {

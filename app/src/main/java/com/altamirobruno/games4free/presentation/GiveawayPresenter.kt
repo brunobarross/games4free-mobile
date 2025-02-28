@@ -14,15 +14,17 @@ class GiveawayPresenter(
   private val view: GiveawayFragment,
   private val dataSource: GiveawayRemoteDataSource = GiveawayRemoteDataSource()
 ) {
-  val categories = mutableListOf<Category>()
-  fun loadingGiveAway() {
+
+  fun loadingGiveAway(id: Int) {
     view.showProgress()
     CoroutineScope(Dispatchers.IO).launch {
       try {
-        val game = dataSource.getGiveaway(1).getOrNull()
+        val game = dataSource.getGiveaway(id).getOrNull()
 
         withContext(Dispatchers.Main) {
-          view.showGiveaway(categories)
+          if (game !== null) {
+            view.showGiveaway(game)
+          }
         }
 
 
