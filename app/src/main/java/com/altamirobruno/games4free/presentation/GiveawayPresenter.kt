@@ -20,7 +20,6 @@ class GiveawayPresenter(
     CoroutineScope(Dispatchers.IO).launch {
       try {
         val game = dataSource.getGiveaway(id).getOrNull()
-
         withContext(Dispatchers.Main) {
           if (game !== null) {
             view.showGiveaway(game)
@@ -30,7 +29,7 @@ class GiveawayPresenter(
 
       } catch (e: Exception) {
         withContext(Dispatchers.Main) {
-          e.message?.let { Log.d("error", it) }
+          e.message?.let { view.showErrorToast(it.toString()) }
         }
       } finally {
         withContext(Dispatchers.Main) {

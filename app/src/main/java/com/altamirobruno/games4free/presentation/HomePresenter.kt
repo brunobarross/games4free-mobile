@@ -18,6 +18,7 @@ class HomePresenter(
         view.showProgress()
         CoroutineScope(Dispatchers.IO).launch {
             try {
+
                 val games = dataSource.getGiveaways("game", ).getOrNull()
                 val loots = dataSource.getGiveaways("loot").getOrNull()
                 withContext(Dispatchers.Main) {
@@ -45,7 +46,7 @@ class HomePresenter(
 
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    e.message?.let { Log.d("error", it) }
+                  e.message?.let { view.showErrorToast(it.toString()) }
                 }
             } finally {
                 withContext(Dispatchers.Main) {
