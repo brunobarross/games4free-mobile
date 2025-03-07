@@ -13,9 +13,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_giveaway_cover"
-        android:layout_width="320dp"
+        android:layout_width="260dp"
         android:layout_height="0dp"
-        app:cardCornerRadius="4dp"
+        app:cardCornerRadius="8dp"
         app:layout_constraintDimensionRatio="4:4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
             <ImageView
                 android:id="@+id/giveaway_cover"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="120dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/movie_cover_placeholder"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
                     android:maxWidth="100dp"
                     android:maxLines="1"
                     android:textAlignment="textStart"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     tools:text="Title" />
 
@@ -67,7 +67,7 @@
                         android:id="@+id/giveaway_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
                         tools:text="Type | " />
 
                     <TextView
@@ -95,11 +95,34 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/giveaway_price_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/giveaway_free_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:text="FREE" />
+
+                    <TextView
+                        android:id="@+id/giveaway_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="@string/price"
+                        android:textSize="10sp" />
+
+
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/giveaway_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="8dp"
                     android:ellipsize="end"
                     android:maxWidth="100dp"
@@ -109,17 +132,6 @@
                     tools:text="Description" />
 
 
-                <Button
-                    android:id="@+id/btn_get"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/text_get"
-                    android:textColor="@color/white"
-
-
-                    />
             </LinearLayout>
 
 
